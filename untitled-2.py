@@ -47,7 +47,14 @@ while running:
                 if float(mashtab[0])/2 > MIN and float(mashtab[1])/2 > MIN:
                     mashtab[0] = str(float(mashtab[0])/2)
                     mashtab[1] = str(float(mashtab[1])/2)
-            print(mashtab)
+            if event.key == pygame.K_UP:
+                cords[1] = str(float(cords[1]) + 1.41*float(mashtab[1]))
+            if event.key == pygame.K_DOWN:
+                cords[1] = str(float(cords[1]) - 1.41*float(mashtab[1]))
+            if event.key == pygame.K_RIGHT:
+                cords[0] = str(float(cords[0]) + 3.3*float(mashtab[0]))
+            if event.key == pygame.K_LEFT:
+                cords[0] = str(float(cords[0]) - 3.3*float(mashtab[0]))
 
     screen.blit(pygame.image.load(map_creat()), (0, 0))
     pygame.display.flip()
