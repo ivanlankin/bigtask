@@ -169,11 +169,13 @@ pygame.init()
 screen = pygame.display.set_mode((600, 450))
 search = Button (((200, 0),(50, 50)),'Найти')
 switch = Button(((550, 0), (50, 50)), 'схема')
+delete = Button(((250, 0),(50, 50)),'Сброс')
 textbox = TextBox (((0,0),(200,50)),'')
 gui = GUI()
 gui.add_element(switch)
 gui.add_element(search)
 gui.add_element(textbox)
+gui.add_element(delete)
 running = True
 
 while running:
@@ -214,6 +216,8 @@ while running:
                     print(cords)
                     lab = "pt={0},pm2dgl".format(','.join(cords))
                     print(lab)
+            if (250 <= event.pos[0] <= 300) and (0 <= event.pos[1] <= 50):
+                lab = ''
             gui.get_event(event)
     if asd == 0:
         layer = "&l=map"
