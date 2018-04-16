@@ -11,6 +11,7 @@ cords = input("кординаты 1 х 2 у через запятую ").split('
 mashtab = input('маштаб через запятую ').split(',')
 response = None
 layer = "&l=map"
+lab = ''
 asd = 0
 
 class GUI:
@@ -114,7 +115,7 @@ class TextBox(Label):
     def render(self, surface):
         super(TextBox, self).render(surface)
         if self.blink and self.active:
-            pygame.draw.line(surface, pygame.Color("White"),
+            pygame.draw.line(surface, pygame.Color("black"),
                              (self.rendered_rect.right + 2, self.rendered_rect.top + 2),
                              (self.rendered_rect.right + 2, self.rendered_rect.bottom - 2))
     def qwer(self):
@@ -123,7 +124,7 @@ class TextBox(Label):
 # "http://geocode-maps.yandex.ru/1.x/?geocode=Якутск&format=json"
 def map_creat():
     try:
-        map_request = "http://static-maps.yandex.ru/1.x/?ll="+cords[0]+","+cords[1]+"&spn="+mashtab[0]+","+mashtab[1]+layer#'https://static-maps.yandex.ru/1.x/?spn=20.002,20.002&ll='136.063527%2C-25.691701'&l=map'
+        map_request = "http://static-maps.yandex.ru/1.x/?ll="+cords[0]+","+cords[1]+"&spn="+mashtab[0]+","+mashtab[1]+layer+'&'+lab#'https://static-maps.yandex.ru/1.x/?spn=20.002,20.002&ll='136.063527%2C-25.691701'&l=map'
         response = requests.get(map_request)
 
         if not response:
@@ -211,6 +212,8 @@ while running:
                     town = textbox.qwer()
                     cords = finder()
                     print(cords)
+                    lab = "pt={0},pm2dgl".format(','.join(cords))
+                    print(lab)
             gui.get_event(event)
     if asd == 0:
         layer = "&l=map"
